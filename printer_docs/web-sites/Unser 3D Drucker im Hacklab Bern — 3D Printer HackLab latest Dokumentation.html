@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths zigonxi idc0_350 ifhku" lang="de" style=""><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Unser 3D Drucker im Hacklab Bern — 3D Printer HackLab latest Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/documentation_options.js"></script>
+        <script type="text/javascript" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/jquery.js"></script>
+        <script type="text/javascript" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/underscore.js"></script>
+        <script type="text/javascript" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/doctools.js"></script>
+        <script type="text/javascript" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/language_data.js"></script>
+        <script type="text/javascript" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/translations.js"></script>
+        <script async="async" type="text/javascript" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/readthedocs-doc-embed.js"></script>
+    
+    <script type="text/javascript" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/theme.css" type="text/css">
+  <link rel="stylesheet" href="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/pygments.css" type="text/css">
+    <link rel="index" title="Stichwortverzeichnis" href="https://3d-printer-hacklab.readthedocs.io/de/latest/genindex.html">
+    <link rel="search" title="Suche" href="https://3d-printer-hacklab.readthedocs.io/de/latest/search.html"> 
+
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/readthedocs-doc-embed.css" type="text/css">
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2022-02-14T21:10:37Z", "builder": "sphinx", "canonical_url": null, "commit": "cc82cc9c", "docroot": "/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "de", "page": "index", "programming_language": "words", "project": "3d-printer-hacklab", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+<link href="data:text/css,%3Ais(%5Bid*%3D'google_ads_iframe'%5D%2C%5Bid*%3D'taboola-'%5D%2C.taboolaHeight%2C.taboola-placeholder%2C%23credential_picker_container%2C%23credentials-picker-container%2C%23credential_picker_iframe%2C%5Bid*%3D'google-one-tap-iframe'%5D%2C%23google-one-tap-popup-container%2C.google-one-tap-modal-div%2C%23amp_floatingAdDiv%2C%23ez-content-blocker-container)%20%7Bdisplay%3Anone!important%3Bmin-height%3A0!important%3Bheight%3A0!important%3B%7D" rel="stylesheet" type="text/css"><script src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/ethicalads.min.js" type="text/javascript" async="" id="ethicaladsjs"></script></head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> 3D Printer HackLab
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal current" href="#"><span class="toctree-expand"></span>Unser 3D Drucker im Hacklab Bern</a><ul>
+<li><a class="reference internal" href="#anleitung-zum-drucken"><span class="toctree-expand"></span>Anleitung zum Drucken</a><ul>
+<li><a class="reference internal" href="#slicer-software-fur-pc-mac">Slicer Software für PC/Mac</a></li>
+<li><a class="reference internal" href="#software-zur-fernsteuerung">Software zur Fernsteuerung</a></li>
+<li><a class="reference internal" href="#filamente">Filamente</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#anleitung-zum-warten"><span class="toctree-expand"></span>Anleitung zum Warten</a><ul>
+<li><a class="reference internal" href="#bed-leveling">Bed leveling</a></li>
+<li><a class="reference internal" href="#nozzle-reinigen">Nozzle reinigen</a></li>
+<li><a class="reference internal" href="#wartungssoftware">Wartungssoftware</a></li>
+<li><a class="reference internal" href="#hardware-werkzeug">Hardware &amp; Werkzeug</a></li>
+<li><a class="reference internal" href="#fehlersuche">Fehlersuche</a></li>
+<li><a class="reference internal" href="#duse-montieren">Düse montieren</a></li>
+<li><a class="reference internal" href="#kalibrationsmuster">Kalibrationsmuster</a></li>
+<li><a class="reference internal" href="#support-forum">Support Forum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#aktueller-aufbau"><span class="toctree-expand"></span>Aktueller Aufbau</a><ul>
+<li><a class="reference internal" href="#marlin-konfiguration"><span class="toctree-expand"></span>Marlin Konfiguration</a><ul>
+<li><a class="reference internal" href="#m115-firmware-informations">M115 - Firmware Informations</a></li>
+<li><a class="reference internal" href="#m503-report-settings-marlin-2-0-x">M503 - Report Settings (Marlin 2.0.x)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#der-reprap-shield"><span class="toctree-expand"></span>Der RepRap Shield</a><ul>
+<li><a class="reference internal" href="#die-stecker-und-verkabelungen">Die Stecker und Verkabelungen</a></li>
+<li><a class="reference internal" href="#das-elektronische-schema">Das elektronische Schema</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#der-lcd-display-mit-taster-sd-kartenlesen"><span class="toctree-expand"></span>Der LCD-Display mit Taster &amp; SD-Kartenlesen</a><ul>
+<li><a class="reference internal" href="#id1">Das elektronische Schema</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#geplante-verbesserungen"><span class="toctree-expand"></span>Geplante Verbesserungen</a><ul>
+<li><a class="reference internal" href="#erweiterungen"><span class="toctree-expand"></span>Erweiterungen</a><ul>
+<li><a class="reference internal" href="#filament-runout-sensor">Filament runout sensor</a></li>
+<li><a class="reference internal" href="#ramps-ersatz-mit-32-bit-prozessor"><span class="toctree-expand"></span>RAMPS Ersatz mit 32-bit Prozessor</a><ul>
+<li><a class="reference internal" href="#induktive-abstandsensoren-am-druckkopf">Induktive Abstandsensoren am Druckkopf</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#filamentreiniger">Filamentreiniger</a></li>
+<li><a class="reference internal" href="#besseres-anzeigemodul"><span class="toctree-expand"></span>Besseres Anzeigemodul</a><ul>
+<li><a class="reference internal" href="#anzeige-bigtreetech-tft24-v1-1">Anzeige - BIGTREETECH TFT24 V1.1</a></li>
+<li><a class="reference internal" href="#anzeige-lcd-12864">Anzeige - LCD 12864</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#durchgefuhrte-verbesserungen"><span class="toctree-expand"></span>Durchgeführte Verbesserungen</a><ul>
+<li><a class="reference internal" href="#neue-tmc2130-treiber-fur-schrittmotoren">Neue TMC2130 Treiber für Schrittmotoren</a></li>
+<li><a class="reference internal" href="#neue-firmware"><span class="toctree-expand"></span>Neue Firmware</a><ul>
+<li><a class="reference internal" href="#abfrage-der-endabschalter">Abfrage der Endabschalter</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bessere-z-axis-distanzeinhaltung"><span class="toctree-expand"></span>Bessere Z-Axis Distanzeinhaltung</a><ul>
+<li><a class="reference internal" href="#verbesserte-stopp-schalter-fuhrung">Verbesserte Stopp Schalter Führung</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      <div id="rtd-sidebar" data-ea-publisher="readthedocs" data-ea-type="readthedocs-sidebar" data-ea-manual="true" class="ethical-rtd ethical-dark-theme" data-ea-keywords="only words|readthedocs-project-3d-printer-hacklab|readthedocs-project-533146" data-ea-campaign-types="community|house|paid"></div></div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">3D Printer HackLab</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> »</li>
+        
+      <li>Unser 3D Drucker im Hacklab Bern</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/chatelao/3dprinter_hacklab/blob/master/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="section" id="unser-3d-drucker-im-hacklab-bern">
+<h1>Unser 3D Drucker im Hacklab Bern<a class="headerlink" href="#unser-3d-drucker-im-hacklab-bern" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="anleitung-zum-drucken">
+<h2>Anleitung zum Drucken<a class="headerlink" href="#anleitung-zum-drucken" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der 3D Drucker im <strong>Hacklab Bern</strong> (<a class="reference external" href="https://www.meetup.com/de-DE/Bern-Silicon-Valley-HackLab-Tech-Group">https://www.meetup.com/de-DE/Bern-Silicon-Valley-HackLab-Tech-Group</a>),
+basiert auf dem <a class="reference external" href="https://www.thingiverse.com/groups/cl-260/things">CL-260</a>
+open-source <a class="reference external" href="https://www.thingiverse.com/minicooper/collections/cl-260">Model</a>.
+Er wird abwechslungsweise von Mitgliedern genutzt und verbessert.</p>
+<div class="section" id="slicer-software-fur-pc-mac">
+<h3>Slicer Software für PC/Mac<a class="headerlink" href="#slicer-software-fur-pc-mac" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Für das Erstellen der Druckbefehle aus den (.stl) 3D-Modellen wird zwingend ein <em>Slicer</em> Programm
+benötigt. Der grosse Klassiker ist <em>Cura</em>, die Alternativen wie <em>Prusa-Slicer</em> funktionieren sehr
+ähnlich:</p>
+<div class="wy-table-responsive"><table border="1" class="docutils">
+<colgroup>
+<col width="62%">
+<col width="17%">
+<col width="21%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Software</th>
+<th class="head">Zweck</th>
+<th class="head">Chocolately Paket</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Cura</td>
+<td>Slicer</td>
+<td>cura-new</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://www.prusa3d.com/prusaslicer">Prusa Slicer</a></td>
+<td>Slicer</td>
+<td>prusaslicer</td>
+</tr>
+</tbody>
+</table></div>
+<p>Der Slicer muss gewisse Details des Druckers kennen, damit er ihn gut ansteuern kann. Anbei
+einige bewährte, wesentliche Einstellungen:</p>
+<div class="wy-table-responsive"><table border="1" class="docutils">
+<colgroup>
+<col width="37%">
+<col width="63%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Einstellung</th>
+<th class="head">Empfohlener Wert</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Drucker Art</td>
+<td>FFF (Fused Filament Fabrication)</td>
+</tr>
+<tr class="row-odd"><td>Druckauflösung</td>
+<td>0.15mm</td>
+</tr>
+<tr class="row-even"><td>Retraction</td>
+<td><strong>5mm</strong></td>
+</tr>
+<tr class="row-odd"><td>PLA Druckkopf</td>
+<td>210°C (erste Schicht) / 200°C</td>
+</tr>
+<tr class="row-even"><td>PLA Heizbett</td>
+<td>55°C (erste Schicht) / 50°C</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="software-zur-fernsteuerung">
+<h3>Software zur Fernsteuerung<a class="headerlink" href="#software-zur-fernsteuerung" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die Steuerung und Statuskontrolle des Druckers geht viel einfacher mit <a class="reference external" href="https://octoprint.org/download/">OctoPrint</a>
+  auf einem RaspberryPi. Damit lassen sich Durckdateien bequem hochladen
+ und der Status jederzeit abfragen. Noch mehr Komfort bieten Plug-Ins 
+wie:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/fabianonline/OctoPrint-Telegram">Telegram Integration</a></li>
+<li><a class="reference external" href="https://github.com/OllisGit/OctoPrint-DisplayLayerProgress">Fortschrittsanzeige auf dem Drucker</a></li>
+</ul>
+</div>
+<div class="section" id="filamente">
+<h3>Filamente<a class="headerlink" href="#filamente" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Kein Druck ohne Filamente, diese können hier bezogen werden:</p>
+<ul class="simple">
+<li>Im FabLab Bern: <a class="reference external" href="https://www.objektweberei.ch/">https://www.objektweberei.ch</a></li>
+<li>Online u.a. bei 3D-Jake: <a class="reference external" href="https://www.3djake.ch/de-CH/filament/pla-filament">https://www.3djake.ch/de-CH/filament/pla-filament</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="anleitung-zum-warten">
+<h2>Anleitung zum Warten<a class="headerlink" href="#anleitung-zum-warten" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="bed-leveling">
+<h3>Bed leveling<a class="headerlink" href="#bed-leveling" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li>Autohome</li>
+<li>Z-Axes senken</li>
+<li>Differenz an am Z-Stopp nachschrauen</li>
+<li>Alle Vier Ecken nachprüfen</li>
+</ul>
+</div>
+<div class="section" id="nozzle-reinigen">
+<h3>Nozzle reinigen<a class="headerlink" href="#nozzle-reinigen" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?v=g8uvh6kvr54">https://www.youtube.com/watch?v=g8uvh6kvr54</a></li>
+<li><strong>Cold pull</strong> das Hotend auf 120°C anwärmen und laufend ziehen, bis das Verstopfte herauskommen.</li>
+</ul>
+</div>
+<div class="section" id="wartungssoftware">
+<h3>Wartungssoftware<a class="headerlink" href="#wartungssoftware" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Zur Wartung des Druckers hilft <em>Pronterface</em>, es stellt die technischeren Schnittstellen, wie
+das serielle Terminal zur direkten Kommunikation mit dem Drucker und bequeme Kontrolleknöpfe
+zum Bewegen der Achsen zur Verfügung.</p>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/pronterface_gui.jpg"><img alt="_images/pronterface_gui.jpg" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/pronterface_gui.jpg" style="width: 300px;"></a>
+<div class="wy-table-responsive"><table border="1" class="docutils">
+<colgroup>
+<col width="62%">
+<col width="17%">
+<col width="21%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Software</th>
+<th class="head">Zweck</th>
+<th class="head">Chocolately Paket</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://www.pronterface.com/">Pronterface</a></td>
+<td>Fernsteuerung</td>
+<td>printrun</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="hardware-werkzeug">
+<h3>Hardware &amp; Werkzeug<a class="headerlink" href="#hardware-werkzeug" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li>Akkupunkturnadeln</li>
+<li>2.5mm Imbusschlüssel</li>
+<li>7mm Innen Sechskantschlüssel</li>
+<li>Messingbürste</li>
+<li>Flachzange</li>
+<li>Seitenschneider</li>
+<li>1.3mm Imbusschlüssel</li>
+<li>M3 Schrauben und Muttern</li>
+<li>5er Gabelschlüssel</li>
+<li>Isopropanol</li>
+<li>Haushaltspapier</li>
+<li>Schieblehre</li>
+<li>Kaptontape</li>
+</ul>
+</div>
+<div class="section" id="fehlersuche">
+<h3>Fehlersuche<a class="headerlink" href="#fehlersuche" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die Fehlersuche am Drucker ist mühsam, allerdings bietet Pursa ein Handbuch
+zum Erkennen der gängigsten Fehler:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.prusa3d.com/print-quality-troubleshooting/">https://www.prusa3d.com/print-quality-troubleshooting/</a></li>
+</ul>
+<p>Dazu hat auch der 3D-Andi ein hervorragendes Video mit vielen Fehlerquellen und -lösungen gedreht:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?v=WL3T_ijUUs8">https://www.youtube.com/watch?v=WL3T_ijUUs8</a></li>
+</ul>
+</div>
+<div class="section" id="duse-montieren">
+<h3>Düse montieren<a class="headerlink" href="#duse-montieren" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Bei der Montage der Düse ist sicherzustellen, dass die Düse kalt nur 0.7mm vor dem Limit angezogen ist.
+In warmem Zustand kann die Düse zusätzlich nach ajustiert werden.</p>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/V6-175-500x500.png"><img alt="_images/V6-175-500x500.png" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/V6-175-500x500.png" style="width: 300px;"></a>
+<ul class="simple">
+<li><a class="reference external" href="https://youtu.be/OzRAVkXjw3I">https://youtu.be/OzRAVkXjw3I</a></li>
+</ul>
+</div>
+<div class="section" id="kalibrationsmuster">
+<h3>Kalibrationsmuster<a class="headerlink" href="#kalibrationsmuster" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Zur Prüfung der Ausrichtung des Heizbetts eignen sich dieses speziellen Quadratmuster. Es erlaubt die Prüfung
+der Druckhöhe und der Distanz zwischen Hotend und Heizbetts.</p>
+<ul class="simple">
+<li>Video: <a class="reference external" href="https://youtu.be/RZRY6kunAvs">https://youtu.be/RZRY6kunAvs</a></li>
+<li>Quelle: <a class="reference external" href="https://www.thingiverse.com/thing:2789086">https://www.thingiverse.com/thing:2789086</a></li>
+<li>STL: <a class="reference external" href="https://github.com/chatelao/3dprinter_hacklab/tree/master/calibration_patterns">calibration_patterns</a></li>
+</ul>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/a11e319e6441382d85e158443514f1c2_preview_featured.jpg"><img alt="_images/a11e319e6441382d85e158443514f1c2_preview_featured.jpg" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/a11e319e6441382d85e158443514f1c2_preview_featured.jpg" style="width: 500px;"></a>
+<p>Weitere Kalibrierungsmuster:
+- <a class="reference external" href="https://www.youtube.com/watch?v=kgCjDy_IgXg">https://www.youtube.com/watch?v=kgCjDy_IgXg</a></p>
+</div>
+<div class="section" id="support-forum">
+<h3>Support Forum<a class="headerlink" href="#support-forum" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://www.3d-druck-community.de/">https://www.3d-druck-community.de/</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="aktueller-aufbau">
+<h1>Aktueller Aufbau<a class="headerlink" href="#aktueller-aufbau" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die Mitglieder verbessern den Aufbau des Druckers laufend. Aktuell setzt er sich aus folgenden Bestandteilen zusammen:</p>
+<div class="wy-table-responsive"><table border="1" class="docutils">
+<colgroup>
+<col width="34%">
+<col width="66%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Funktionalität</th>
+<th class="head">Verwendete Lösung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Firmware</td>
+<td><a class="reference external" href="https://github.com/MarlinFirmware/Marlin">Marlin 2.0.x</a></td>
+</tr>
+<tr class="row-odd"><td>Mikrocontroller</td>
+<td><a class="reference external" href="https://www.3dware.ch/Iduino-MEGA2560-De.htm">Arduino Mega 2560</a></td>
+</tr>
+<tr class="row-even"><td>Leistungselektronik Shield</td>
+<td><a class="reference external" href="https://reprap.org/wiki/RAMPS_1.4">RepRap-Arduino-Mega-Pololu-Shield (RAMPS) 1.4</a></td>
+</tr>
+<tr class="row-odd"><td>Verstärker Schrittmotoren</td>
+<td><a class="reference external" href="https://www.allegromicro.com/~/media/Files/Datasheets/A4988-Datasheet.ashx">A4988 Datasheet</a></td>
+</tr>
+<tr class="row-even"><td>Display Platine</td>
+<td><a class="reference external" href="https://reprap.org/wiki/RepRapDiscount_Smart_Controller">RepRapdiscount smart controller 2004 LCD (RED)</a></td>
+</tr>
+<tr class="row-odd"><td>Schrittmotoren</td>
+<td>NEMA ?</td>
+</tr>
+<tr class="row-even"><td>Zahnriemen</td>
+<td>5mm breit, 2mm Zahnschritt</td>
+</tr>
+<tr class="row-odd"><td>Antriebsstangen</td>
+<td>8mm Stahlstangen</td>
+</tr>
+<tr class="row-even"><td>Lager der Antriebsstangen</td>
+<td>8 mm (innen) / 22 mm (aussen) / 7 mmm (Dicke) Standardlager</td>
+</tr>
+<tr class="row-odd"><td>Pulley</td>
+<td>20 Zähne, 8mm Innendurchmesser, mit M3 Imbusfixierung</td>
+</tr>
+<tr class="row-even"><td>Heat Bed</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Bowden Schlauch</td>
+<td><a class="reference external" href="https://www.aliexpress.com/item/4000266365536.html">2mm PTFE Tube</a></td>
+</tr>
+<tr class="row-even"><td>Bowden Start (Motor, M5)</td>
+<td><a class="reference external" href="https://www.aliexpress.com/item/4000182529332.html">PC4-M5</a></td>
+</tr>
+<tr class="row-odd"><td>Bowden Ende (Heizkopf, R1/8)</td>
+<td><a class="reference external" href="https://www.aliexpress.com/item/4000182529332.html">PC4-01</a></td>
+</tr>
+<tr class="row-even"><td>Hot End</td>
+<td>Hotend: e3d v6</td>
+</tr>
+<tr class="row-odd"><td>Nozzle</td>
+<td>0.4mm</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://www.thingiverse.com/thing:1800495">3D Teile</a></td>
+<td>Gedruckte Teile</td>
+</tr>
+<tr class="row-odd"><td>Stromversorgung</td>
+<td>Schaltnetzteil 12V 20A ohne aktive Kühlung</td>
+</tr>
+<tr class="row-even"><td>Medium</td>
+<td>SD-Karte, regulärer Grösse</td>
+</tr>
+<tr class="row-odd"><td>Datenkabel</td>
+<td>USB-Kabel mit Standard-B Stecker den Mikrocontroller</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="marlin-konfiguration">
+<h2>Marlin Konfiguration<a class="headerlink" href="#marlin-konfiguration" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit der <a class="reference external" href="https://www.pronterface.com/">Pronterface</a> Software kann der Drucker über <a class="reference external" href="http://marlinfw.org/docs/gcode/M115.html">gCode Befehle</a> oder das GUI mit der seriellen Schnittstelle ferngesteuert und untersucht werden:</p>
+<div class="section" id="m115-firmware-informations">
+<h3>M115 - Firmware Informations<a class="headerlink" href="#m115-firmware-informations" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">M115</span>
+<span class="go">SENDING:M115</span>
+<span class="go">FIRMWARE_NAME:Marlin 2.0.x (GitHub)</span>
+<span class="go">SOURCE_CODE_URL:https://github.com/MarlinFirmware/Marlin</span>
+<span class="go">PROTOCOL_VERSION:1.0</span>
+<span class="go">MACHINE_TYPE:Hacklab CL260</span>
+<span class="go">EXTRUDER_COUNT:1</span>
+<span class="go">UUID:b01ac89d-d7b3-43ec-8f82-dfb65c785486</span>
+
+<span class="go">Cap:SERIAL_XON_XOFF:0</span>
+<span class="go">Cap:BINARY_FILE_TRANSFER:0</span>
+<span class="go">Cap:EEPROM:0</span>
+<span class="go">Cap:VOLUMETRIC:1</span>
+<span class="go">Cap:AUTOREPORT_TEMP:1</span>
+<span class="go">Cap:PROGRESS:0</span>
+<span class="go">Cap:PRINT_JOB:1</span>
+<span class="go">Cap:AUTOLEVEL:0</span>
+<span class="go">Cap:Z_PROBE:0</span>
+<span class="go">Cap:LEVELING_DATA:0</span>
+<span class="go">Cap:BUILD_PERCENT:0</span>
+<span class="go">Cap:SOFTWARE_POWER:0</span>
+<span class="go">Cap:TOGGLE_LIGHTS:0</span>
+<span class="go">Cap:CASE_LIGHT_BRIGHTNESS:0</span>
+<span class="go">Cap:EMERGENCY_PARSER:0</span>
+<span class="go">Cap:PROMPT_SUPPORT:0</span>
+<span class="go">Cap:AUTOREPORT_SD_STATUS:0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="m503-report-settings-marlin-2-0-x">
+<h3>M503 - Report Settings (Marlin 2.0.x)<a class="headerlink" href="#m503-report-settings-marlin-2-0-x" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="wy-table-responsive"><table border="1" class="docutils">
+<colgroup>
+<col width="33%">
+<col width="53%">
+<col width="14%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Einstellung</th>
+<th class="head">gCode</th>
+<th class="head">Marlin 2.0.x</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Units in mm (mm)</td>
+<td><a class="reference external" href="http://marlinfw.org/docs/gcode/G021.html">G21</a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Filament diameter</td>
+<td><a class="reference external" href="http://marlinfw.org/docs/gcode/M200.html">M200</a></td>
+<td>D1.75</td>
+</tr>
+<tr class="row-even"><td rowspan="4">Steps per unit</td>
+<td rowspan="4"><a class="reference external" href="http://marlinfw.org/docs/gcode/M92.html">M92</a></td>
+<td>X80.00</td>
+</tr>
+<tr class="row-odd"><td>Y80.00</td>
+</tr>
+<tr class="row-even"><td>Z1600.00</td>
+</tr>
+<tr class="row-odd"><td>E161.00</td>
+</tr>
+<tr class="row-even"><td rowspan="4">Max. Speed (mm/s)</td>
+<td rowspan="4"><a class="reference external" href="http://marlinfw.org/docs/gcode/M203.html">M203</a></td>
+<td>X300.00</td>
+</tr>
+<tr class="row-odd"><td>Y300.00</td>
+</tr>
+<tr class="row-even"><td>Z5.00</td>
+</tr>
+<tr class="row-odd"><td>E45.00</td>
+</tr>
+<tr class="row-even"><td rowspan="4">Max. Acceleration (mm/s2)</td>
+<td rowspan="4"><a class="reference external" href="http://marlinfw.org/docs/gcode/M201.html">M201</a></td>
+<td>X9000</td>
+</tr>
+<tr class="row-odd"><td>Y9000</td>
+</tr>
+<tr class="row-even"><td>Z100</td>
+</tr>
+<tr class="row-odd"><td>E10000</td>
+</tr>
+<tr class="row-even"><td>S=Acceleration</td>
+<td rowspan="5"><a class="reference external" href="http://marlinfw.org/docs/gcode/M204.html">M204</a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>P=Print Acceleration (mm/s2)</td>
+<td>P3000.00</td>
+</tr>
+<tr class="row-even"><td>R=Retract Acceleration (mm/s2)</td>
+<td>R3000.00</td>
+</tr>
+<tr class="row-odd"><td>T=Retract Acceleration (mm/s2)</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>T=Travel Acceleration (mm/s2)</td>
+<td>T3000.00</td>
+</tr>
+<tr class="row-odd"><td>B=minimum segment time (ms)</td>
+<td rowspan="4"><a class="reference external" href="http://marlinfw.org/docs/gcode/M205.html">M205</a></td>
+<td>B20000</td>
+</tr>
+<tr class="row-even"><td>S=Min feedrate (mm/s)</td>
+<td>S0.00</td>
+</tr>
+<tr class="row-odd"><td>T=Min travel feedrate (mm/s)</td>
+<td>T0.00</td>
+</tr>
+<tr class="row-even"><td>J=Junc_dev</td>
+<td>J0.01</td>
+</tr>
+<tr class="row-odd"><td>Home offset (mm)</td>
+<td><a class="reference external" href="http://marlinfw.org/docs/gcode/M206.html">M206</a></td>
+<td>X0.00
+Y0.00
+Z0.00</td>
+</tr>
+<tr class="row-even"><td rowspan="3">Hotend PID settings</td>
+<td rowspan="3"><a class="reference external" href="http://marlinfw.org/docs/gcode/M301.html">M301</a></td>
+<td>P22.20</td>
+</tr>
+<tr class="row-odd"><td>I1.08</td>
+</tr>
+<tr class="row-even"><td>D114.00</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="section" id="der-reprap-shield">
+<h2>Der RepRap Shield<a class="headerlink" href="#der-reprap-shield" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das <strong>RepRap Arduino Mega Pololu Shield</strong> dient als Plattform zur Anbindung
+aller weiteren Eletronik am System:</p>
+<ol class="arabic simple">
+<li>Dem <em>Arduino Mega</em> als Microkontroller</li>
+<li>Den Schrittmotoren, ihren Reglern und Endsensoren</li>
+<li>Dem Heizkopf und -bett, sowie ihren jeweiligen Messfühlern</li>
+<li>Dem LCD-Display und Drehtaster mit SD-Kartenleser</li>
+<li>Den Lüftern für den Heizkopf und das Material</li>
+<li>etc.</li>
+</ol>
+<div class="section" id="die-stecker-und-verkabelungen">
+<h3>Die Stecker und Verkabelungen<a class="headerlink" href="#die-stecker-und-verkabelungen" title="Link zu dieser Überschrift">¶</a></h3>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/Rampswire14.svg"><img alt="RAMPS 1.4 wiring schematics" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/Rampswire14.svg" width="500px"></a>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/RAMPS-Shield-1.4-bovenkant-legenda.jpg"><img alt="RAMPS 1.4 photo with pinout legend" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/RAMPS-Shield-1.4-bovenkant-legenda.jpg" style="width: 500px;"></a>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/800px-Arduinomega1-4connectors.png"><img alt="RAMPS 1.4 pinouts schematics" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/800px-Arduinomega1-4connectors.png" style="width: 500px;"></a>
+</div>
+<div class="section" id="das-elektronische-schema">
+<h3>Das elektronische Schema<a class="headerlink" href="#das-elektronische-schema" title="Link zu dieser Überschrift">¶</a></h3>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/RAMPS1.4schematic.png"><img alt="RAMPS 1.4 electronic schematics" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/RAMPS1.4schematic.png" style="width: 500px;"></a>
+</div>
+</div>
+<div class="section" id="der-lcd-display-mit-taster-sd-kartenlesen">
+<h2>Der LCD-Display mit Taster &amp; SD-Kartenlesen<a class="headerlink" href="#der-lcd-display-mit-taster-sd-kartenlesen" title="Link zu dieser Überschrift">¶</a></h2>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/RepRapDiscount_SC-Front.jpg"><img alt="RepRap-Discount SmartController frontside view" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/RepRapDiscount_SC-Front.jpg" style="width: 500px;"></a>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/RepRapDiscount_SC-Back.jpg"><img alt="RepRap-Discount SmartController backside view" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/RepRapDiscount_SC-Back.jpg" style="width: 500px;"></a>
+<div class="section" id="id1">
+<h3>Das elektronische Schema<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h3>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/RRD_Smart_LCD.jpg"><img alt="_images/RRD_Smart_LCD.jpg" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/RRD_Smart_LCD.jpg" style="width: 500px;"></a>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/SC_Adapter.png"><img alt="_images/SC_Adapter.png" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/SC_Adapter.png" style="width: 500px;"></a>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="geplante-verbesserungen">
+<h1>Geplante Verbesserungen<a class="headerlink" href="#geplante-verbesserungen" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="erweiterungen">
+<h2>Erweiterungen<a class="headerlink" href="#erweiterungen" title="Link zu dieser Überschrift">¶</a></h2>
+<p><a class="reference external" href="https://www.aliexpress.com/item/4000211772563.html">https://www.aliexpress.com/item/4000211772563.html</a></p>
+<div class="section" id="filament-runout-sensor">
+<h3>Filament runout sensor<a class="headerlink" href="#filament-runout-sensor" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li>Sensor casing: <a class="reference external" href="https://www.thingiverse.com/thing:1698397">https://www.thingiverse.com/thing:1698397</a></li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=gwHpXaj_6xE">https://www.youtube.com/watch?v=gwHpXaj_6xE</a></li>
+</ul>
+</div>
+<div class="section" id="ramps-ersatz-mit-32-bit-prozessor">
+<h3>RAMPS Ersatz mit 32-bit Prozessor<a class="headerlink" href="#ramps-ersatz-mit-32-bit-prozessor" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die Kombination RAMPS1.4 und Arduino Mega ist der de-facto standard für 3D-Drucker.
+Aktuell besteht nur ein geringer Bedarf diese Kombination abzulösen, da nur folgende
+Schwächen bestehen:</p>
+<ol class="arabic simple">
+<li>Die Leistung der Heizausgänge ist auf 11A beschränkt (MKS v1.3: 20A)</li>
+<li>Die Unterstützung eines TFT-Touchpanels ist mir nicht bekannt</li>
+<li>Die Rechenleistung im 8-Bit Kontroller ist geriner als im 32-bit Modell</li>
+</ol>
+<p>Ein  Kandidat wäre das BigTreeTech SKR V1.3
+- <a class="reference external" href="https://www.aliexpress.com/item/32981807406.html">https://www.aliexpress.com/item/32981807406.html</a></p>
+<div class="section" id="induktive-abstandsensoren-am-druckkopf">
+<h4>Induktive Abstandsensoren am Druckkopf<a class="headerlink" href="#induktive-abstandsensoren-am-druckkopf" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Das sogenannte „Bed Auto Leveling“ ermöglicht es ein schiefes Druckbett zu kompensieren.
+Es kann den Abstand zum Druckbett laufen und an allen Stellen ausmessen.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://youtu.be/G-TwWfUzXpc">https://youtu.be/G-TwWfUzXpc</a></li>
+<li>Sensor: <a class="reference external" href="https://de.aliexpress.com/item/32568347298.html">https://de.aliexpress.com/item/32568347298.html</a></li>
+</ul>
+<p>Verbesserte Halterung
+- <a class="reference external" href="https://www.thingiverse.com/thing:2332037">https://www.thingiverse.com/thing:2332037</a></p>
+</div>
+</div>
+<div class="section" id="filamentreiniger">
+<h3>Filamentreiniger<a class="headerlink" href="#filamentreiniger" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Auf den Filamenten haftet meist ein wenig Staub. Eine Reinigung vor dem Drucken reduziert die
+Verunreinigung am Druckkopf.</p>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/Universal_Filament_Filter_v020_preview_featured.jpg"><img alt="_images/Universal_Filament_Filter_v020_preview_featured.jpg" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/Universal_Filament_Filter_v020_preview_featured.jpg" style="width: 300px;"></a>
+</div>
+<div class="section" id="besseres-anzeigemodul">
+<h3>Besseres Anzeigemodul<a class="headerlink" href="#besseres-anzeigemodul" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="section" id="anzeige-bigtreetech-tft24-v1-1">
+<h4>Anzeige - BIGTREETECH TFT24 V1.1<a class="headerlink" href="#anzeige-bigtreetech-tft24-v1-1" title="Link zu dieser Überschrift">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="https://www.aliexpress.com/item/33047390457.html">https://www.aliexpress.com/item/33047390457.html</a></li>
+</ul>
+</div>
+<div class="section" id="anzeige-lcd-12864">
+<h4>Anzeige - LCD 12864<a class="headerlink" href="#anzeige-lcd-12864" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Die LCD-Anzeige dient zur Steuerung des Druckers direkt am Gerät. Der SD-Card Leser
+ist ebenfalls direkt in das Modul eingebaut. Dazu muss die
+<a class="reference external" href="http://marlinfw.org/docs/configuration/configuration.html#lcd-controller">Marlin Konfiguration</a>
+korrekt eingestellt werden.</p>
+<p>Aktuell enthält der Drucker ein einfaches, sehr funktionales LCD 20x2 Zeichen Display.
+Ein grösseres Display könnte die gleichen Daten etwas komfortabler darstellen. Eine
+Option ist ein $8
+<a class="reference external" href="https://www.aliexpress.com/item/1000007365397.html">LCD 12864 Module from Aliexpress</a>.</p>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/d715ff343a1bbe875cc5d8fa0ba307a8_preview_featured.jpg"><img alt="_images/d715ff343a1bbe875cc5d8fa0ba307a8_preview_featured.jpg" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/d715ff343a1bbe875cc5d8fa0ba307a8_preview_featured.jpg" style="width: 500px;"></a>
+<p>Ein dazu passendes Gehäuse fand sich auf <a class="reference external" href="https://www.thingiverse.com/thing:2813298">Thingiverse</a>,
+oder hier im <a class="reference external" href="https://github.com/chatelao/3dprinter_hacklab/blob/master/lcd_12864/Top_Shell.stl">Verzeichnis</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="durchgefuhrte-verbesserungen">
+<h2>Durchgeführte Verbesserungen<a class="headerlink" href="#durchgefuhrte-verbesserungen" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="neue-tmc2130-treiber-fur-schrittmotoren">
+<h3>Neue TMC2130 Treiber für Schrittmotoren<a class="headerlink" href="#neue-tmc2130-treiber-fur-schrittmotoren" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die aktuellen Treiberchips der Schrittmotoren sind klassische Pololu A4988.
+Diese Trieber steuern den Drucker korrekt, aber können keine Schrittverluste
+erkennen oder korrigieren. Die Motoren sind bei der Ansteuerung auch relativ laut.</p>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/TMC2130_Umbau.jpg"><img alt="_images/TMC2130_Umbau.jpg" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/TMC2130_Umbau.jpg" style="width: 500px;"></a>
+<p>Die Alternative dazu sind die TMC2130 der Firma Trinamic. Sie erlauben es,
+Blockierungen und damit Schrittverluste zu erkenne.</p>
+<ul class="simple">
+<li>Anleitung zum Erhalten der LCD und SD-Karte (Chris Riley): <a class="reference external" href="https://www.youtube.com/watch?v=kMICfCa6bHk">https://www.youtube.com/watch?v=kMICfCa6bHk</a></li>
+</ul>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/ramps_TMC2130_after.png"><img alt="_images/ramps_TMC2130_after.png" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/ramps_TMC2130_after.png" style="width: 500px;"></a>
+<ul class="simple">
+<li>Alterativ, aber unvollständig (Tom Sandladerer): <a class="reference external" href="https://www.youtube.com/watch?v=sPvTB3irCxQ&amp;t=728s">https://www.youtube.com/watch?v=sPvTB3irCxQ&amp;t=728s</a></li>
+</ul>
+</div>
+<div class="section" id="neue-firmware">
+<h3>Neue Firmware<a class="headerlink" href="#neue-firmware" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die aktuelle Firmware funktioniert wie gewünscht, ist allerdings nicht auf dem allerneusten Stand.
+Allfällige Verbesserungen in der Logik und Sicherheit der letzten Jahre fehlen noch und der
+Sourcecode ist aktuell nicht bekannt, allerdings ergibt die „M115“ Abfrage ein Marlin V1.</p>
+<p>Daher wären eine Aktualisierung in Erwägungen zu ziehen:</p>
+<ol class="arabic simple">
+<li>Die bestehende Firmware durch Ausbau des Arduino Mega Boards sichern.</li>
+<li>Ein neues Arduino Mega Board (<a class="reference external" href="https://www.aliexpress.com/item/32719027443.html">$9 Aliexpress</a>) für die Versuche mit der neuen Firmware einbauen.</li>
+<li>Neue Firmware  <a class="reference external" href="https://github.com/MarlinFirmware/Marlin">Marlin 2.0</a> oder <a href="#id3"><span class="problematic" id="id4">Repetier_</span></a> herunterladen.</li>
+<li>Die Software für den Drucker konfigurieren (siehe HW-Konfiguration).</li>
+<li>Die Software installieren und mit <a class="reference external" href="https://www.pronterface.com/">Pronterface</a> testen.</li>
+</ol>
+<p>Hilfestellungen in der Fehlersuche der neuen Konfiguration:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?v=0pt_b2ZizQM">https://www.youtube.com/watch?v=0pt_b2ZizQM</a></li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=lAKyZd63_ns">https://www.youtube.com/watch?v=lAKyZd63_ns</a> (2016: <a class="reference external" href="https://www.youtube.com/watch?v=3gwWVFtdg-4">https://www.youtube.com/watch?v=3gwWVFtdg-4</a>)</li>
+</ul>
+<div class="section" id="abfrage-der-endabschalter">
+<h4>Abfrage der Endabschalter<a class="headerlink" href="#abfrage-der-endabschalter" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Mit der gCode Befehl M119 kann der aktuelle Zustand der Endabschalter ausgelesen werden.
+Die Abfrage zeigt bei unserer Elektronik ausgelöste Stopps im offenen Zustand.
+Ein anschliessend testweise ausgelöster Z-Entstopp wird als offen angezeigt, der Wert wird
+also fehlerfrei ausgelesen und ist nur invertiert:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Reporting</span> <span class="n">endstop</span> <span class="n">status</span>
+<span class="n">x_min</span><span class="p">:</span> <span class="n">TRIGGERED</span>
+<span class="n">y_min</span><span class="p">:</span> <span class="n">TRIGGERED</span>
+<span class="n">z_min</span><span class="p">:</span> <span class="nb">open</span>
+</pre></div>
+</div>
+<p>Zur Korrektur muss die Konfiguration angepasst werden. Die xxx_MIN_ENDSTOP_INVERTING Werte sind
+normalerweise „false“ und müssen auf „true“ umgestellt werden:</p>
+</div>
+</div>
+<div class="section" id="bessere-z-axis-distanzeinhaltung">
+<h3>Bessere Z-Axis Distanzeinhaltung<a class="headerlink" href="#bessere-z-axis-distanzeinhaltung" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Nur eine präzises Startdistanz zum Heizbett erlaubt präzise erste Schichten.</p>
+<div class="section" id="verbesserte-stopp-schalter-fuhrung">
+<h4>Verbesserte Stopp Schalter Führung<a class="headerlink" href="#verbesserte-stopp-schalter-fuhrung" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Der End-Stops soll den Schalter wiederholbar zum gleichen Zeitpunkt auslösen. Der Würfel erlaubt
+grössere Toleranzen zum Treffen des Schalters.</p>
+<p>Quelle:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.thingiverse.com/thing:2851658">https://www.thingiverse.com/thing:2851658</a></li>
+<li>STL: <a class="reference external" href="https://github.com/chatelao/3dprinter_hacklab/tree/master/z_axis_sensor_print">z_axis_sensor_print</a></li>
+</ul>
+<a class="reference internal image-reference" href="https://3d-printer-hacklab.readthedocs.io/de/latest/_images/5cc3017be026a4b2a4c0659578d3ea0d_preview_featured.jpg"><img alt="_images/5cc3017be026a4b2a4c0659578d3ea0d_preview_featured.jpg" src="Unser%203D%20Drucker%20im%20Hacklab%20Bern%20%E2%80%94%203D%20Printer%20HackLab%20latest%20Dokumentation-Dateien/5cc3017be026a4b2a4c0659578d3ea0d_preview_featured.jpg" style="width: 500px;"></a>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2022
+      
+        <span class="commit">
+          Revision <code>cc82cc9c</code>.
+        </span>
+      
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions"><!-- Inserted RTD Footer -->
+
+<div class="injected">
+
+  
+
+      
+      
+      
+      <dl>
+        <dt>Versionen</dt>
+        
+        <dd class="rtd-current-item">
+          <a href="https://3d-printer-hacklab.readthedocs.io/de/latest/">latest</a>
+        </dd>
+        
+      </dl>
+      
+      
+
+      
+      
+      <dl>
+        <dt>Downloads</dt>
+        
+        <dd><a href="https://3d-printer-hacklab.readthedocs.io/_/downloads/de/latest/pdf/">PDF</a></dd>
+        
+        <dd><a href="https://3d-printer-hacklab.readthedocs.io/_/downloads/de/latest/htmlzip/">HTML</a></dd>
+        
+        <dd><a href="https://3d-printer-hacklab.readthedocs.io/_/downloads/de/latest/epub/">Epub</a></dd>
+        
+      </dl>
+      
+      
+
+      
+      <dl>
+        
+        <!-- These are kept as relative links for internal installs that are http -->
+        <dt>Auf Read the Docs</dt>
+        <dd>
+          <a href="https://readthedocs.org/projects/3d-printer-hacklab/">Projektstartseite</a>
+        </dd>
+        <dd>
+          <a href="https://readthedocs.org/projects/3d-printer-hacklab/builds/">Erstellungsprozesse</a>
+        </dd>
+        <dd>
+          <a href="https://readthedocs.org/projects/3d-printer-hacklab/downloads/">Downloads</a>
+        </dd>
+      </dl>
+      
+
+      
+
+      
+      <dl>
+        <dt>Auf GitHub</dt>
+        <dd>
+          <a href="https://github.com/chatelao/3dprinter_hacklab/blob/master//index.rst">Ansehen</a>
+        </dd>
+        
+        <dd>
+          <a href="https://github.com/chatelao/3dprinter_hacklab/edit/master//index.rst">Bearbeiten</a>
+        </dd>
+        
+      </dl>
+      
+      
+
+      
+      <dl>
+        <dt>Suche</dt>
+        <dd>
+          <div style="padding: 6px;">
+            
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="//readthedocs.org/projects/3d-printer-hacklab/search/" method="get">
+              <input type="text" name="q" aria-label="Dokumente durchsuchen" placeholder="Dokumente durchsuchen">
+              </form>
+          </div>
+        </dd>
+      </dl>
+      
+
+      <hr>
+
+      
+        <small>
+          <span>Bereitgestellt von <a href="https://readthedocs.org/">Read the Docs</a></span>
+          <span> · </span>
+          <a href="https://docs.readthedocs.io/page/privacy-policy.html">Datenschutz-Bestimmungen</a>
+        </small>
+      
+
+      
+
+</div>
+</div>
+  </div>
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+   
+
+
+</body></html>
